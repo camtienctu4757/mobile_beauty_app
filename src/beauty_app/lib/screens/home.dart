@@ -43,15 +43,37 @@ class _homeSCreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shop'),
-        actions: [
-          Container(
-            width: 250.0,
-            padding: const EdgeInsets.all(2),
-            child: const Input(placeholder: 'Search...'),
-          ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search))
-        ],
+        titleSpacing: 20,
+        title: Row(
+          children: [
+            Text('LogoApp'),
+            SizedBox(width: 20,),
+            Expanded(
+              flex: 2,
+              child: TextField(
+                decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 0.5, horizontal: 20),
+                    hintText: 'Bạn đang tìm gì ?',
+                    hintStyle:
+                        TextStyle(color: Theme.of(context).colorScheme.primary),
+                    suffixIcon: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.search),
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    filled: true,
+                    fillColor: Theme.of(context).colorScheme.tertiary,
+                    border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                        gapPadding: 20,
+                        borderSide: BorderSide.none)),
+              ),
+            )
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(0),

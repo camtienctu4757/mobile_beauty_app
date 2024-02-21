@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
 
 class Input extends StatefulWidget {
-  const Input({super.key, required this.placeholder, required this.getValue});
+  const Input({
+    super.key,
+    required this.placeholder,
+    required this.getValue,
+  });
   final String placeholder;
   final void Function(String, String) getValue;
+
   @override
   State<Input> createState() => _InputState();
 }
 
 class _InputState extends State<Input> {
-  var _name = '';
+  bool _isObscured = true;
+
   String? validData(value) {
     if (value.toString().isEmpty || value.toString().trim().length == 0) {
       return 'Vui lòng nhập';
@@ -34,30 +40,32 @@ class _InputState extends State<Input> {
     }
   }
 
+
   @override
   Widget build(context) {
-    var _isObscured = false;
     void _toggleObscureText() {
       setState(() {
         _isObscured = !_isObscured;
       });
     }
 
-    if (widget.placeholder.toString() == 'Password' ||
-        widget.placeholder.toString() == 'Password again') {
-      _toggleObscureText();
-    }
-
     return TextFormField(
         decoration: InputDecoration(
             label: Text(widget.placeholder),
-            // suffixIcon: IconButton(
-            //     onPressed: _toggleObscureText,
-            //     icon: Icon(
-            //       _isObscured ? Icons.visibility : Icons.visibility_off,
-            //     )),
             fillColor: Theme.of(context).colorScheme.tertiary,
             filled: true,
+            suffixIcon: widget.placeholder == 'Password' ||
+                    widget.placeholder == 'Password again'
+                  ?IconButton(
+                    onPressed: _toggleObscureText,
+                    icon: Icon(
+                      _isObscured ? Icons.visibility : Icons.visibility_off,
+                    ))
+                    :Container(
+                    width: 0,
+                    height: 0,
+                  )
+                    ,
             contentPadding: const EdgeInsets.all(10),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
@@ -68,7 +76,10 @@ class _InputState extends State<Input> {
         onSaved: (value) {
           widget.getValue(widget.placeholder, value.toString());
         },
-        validator: validData,
-        obscureText: _isObscured);
+        validator: (value) {
+          return validData(value);
+        },
+        obscureText: (widget.placeholder == 'User name' ||
+                    widget.placeholder == 'Email')?false:_isObscured);
   }
 }
