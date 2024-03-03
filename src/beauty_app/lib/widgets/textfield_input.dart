@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class Input extends StatefulWidget {
   const Input({
     super.key,
@@ -16,7 +15,7 @@ class Input extends StatefulWidget {
 
 class _InputState extends State<Input> {
   bool _isObscured = true;
-
+  
   String? validData(value) {
     if (value.toString().isEmpty || value.toString().trim().length == 0) {
       return 'Vui lòng nhập';
@@ -40,7 +39,6 @@ class _InputState extends State<Input> {
     }
   }
 
-
   @override
   Widget build(context) {
     void _toggleObscureText() {
@@ -52,26 +50,25 @@ class _InputState extends State<Input> {
     return TextFormField(
         decoration: InputDecoration(
             label: Text(widget.placeholder),
-            fillColor: Theme.of(context).colorScheme.tertiary,
+            fillColor: Theme.of(context).colorScheme.secondary,
             filled: true,
             suffixIcon: widget.placeholder == 'Password' ||
                     widget.placeholder == 'Password again'
-                  ?IconButton(
+                ? IconButton(
                     onPressed: _toggleObscureText,
                     icon: Icon(
                       _isObscured ? Icons.visibility : Icons.visibility_off,
                     ))
-                    :Container(
+                : Container(
                     width: 0,
                     height: 0,
-                  )
-                    ,
+                  ),
             contentPadding: const EdgeInsets.all(10),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
                 borderSide: BorderSide.none),
-            labelStyle:
-                TextStyle(color: Theme.of(context).colorScheme.secondary)),
+            labelStyle: TextStyle(color: Color.fromARGB(255, 119, 118, 118))),
+        // TextStyle(color: Theme.of(context).colorScheme.secondary)),
         // validator:,
         onSaved: (value) {
           widget.getValue(widget.placeholder, value.toString());
@@ -79,7 +76,9 @@ class _InputState extends State<Input> {
         validator: (value) {
           return validData(value);
         },
-        obscureText: (widget.placeholder == 'User name' ||
-                    widget.placeholder == 'Email')?false:_isObscured);
+        obscureText:
+            (widget.placeholder == 'User name' || widget.placeholder == 'Email')
+                ? false
+                : _isObscured);
   }
 }

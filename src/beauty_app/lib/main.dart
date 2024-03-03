@@ -1,18 +1,25 @@
 // import 'package:beauty_app/screens/home.dart';
 import 'package:beauty_app/screens/home.dart';
 import 'package:beauty_app/screens/sign_in.dart';
+import 'package:beauty_app/widgets/catagogy.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 const kDarkColor = ColorScheme.dark(
-    primary: Color.fromARGB(255, 222, 182, 148),
-    onPrimary: Color.fromARGB(255, 209, 107, 19),
-    secondary: Color.fromARGB(255, 158, 127, 109));
+    primary: Color.fromARGB(255, 17, 159, 246),
+    onPrimary: Color.fromARGB(255, 74, 149, 196),
+    secondary:  Color.fromARGB(255, 41, 83, 110));
 final kBrightColor = ColorScheme.fromSeed(
-    seedColor: Color.fromARGB(255, 251, 177, 92),
-    primary: Color.fromARGB(255, 222, 138, 34),
-    secondary: Color.fromARGB(255, 243, 180, 108),
-    tertiary: Color.fromARGB(255, 255, 233, 206));
+    seedColor:Color.fromARGB(255, 142, 209, 252),
+    primary:Color.fromARGB(255, 153, 212, 249),
+    secondary: Color.fromARGB(255, 222, 240, 251),
+    tertiary:Color.fromARGB(255, 200, 230, 240),
+    onTertiary: Color.fromARGB(255, 133, 133, 133),
+    onSecondary: Color.fromARGB(255, 144, 184, 185),
+    onPrimary: Color.fromARGB(255, 22, 141, 181),
+
+    );
+  
 //define theme
 final theme = ThemeData(
   useMaterial3: true,
@@ -37,7 +44,7 @@ class MyApp extends StatelessWidget {
       darkTheme: themeDark,
       title: 'Beauty App',
       theme: theme,
-      home: const HomeScreen(),
+      home:const HomeScreen()
     );
   }
 }

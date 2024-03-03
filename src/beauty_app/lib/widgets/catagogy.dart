@@ -7,9 +7,27 @@ class Catagogy extends StatelessWidget {
   @override
   Widget build(context) {
     return Container(
-      width: 20,
-      height: 20,
-      child: InkWell(borderRadius: BorderRadius.all(Radius.circular(50))),
+      // padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(shape: BoxShape.circle),
+      child: Column(children: [
+        MouseRegion(
+          child: ClipOval(
+            child: InkWell(
+              child:
+                  Image.asset(image, height: 70, width: 70, fit: BoxFit.cover),
+              mouseCursor: SystemMouseCursors.click,
+            ),
+          ),
+          cursor: SystemMouseCursors.click,
+        ),
+        Text(
+          Name,
+          style: TextStyle(
+              fontWeight: FontWeight.w700,
+              color: Theme.of(context).colorScheme.onPrimary,
+              fontSize: 15),
+        )
+      ]),
     );
   }
 }

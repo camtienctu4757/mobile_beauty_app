@@ -1,9 +1,8 @@
-import 'package:uuid/uuid.dart';
-
-final uuid = Uuid();
-
 class Category {
-  Category({required this.name}) : id = uuid.v4();
+  const Category({
+    required this.id,
+    required this.name
+  });
+  final int id;
   final String name;
-  final String id;
 }

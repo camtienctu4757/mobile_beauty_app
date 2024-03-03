@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: TextStyle(
                               fontSize: 35,
                               fontWeight: FontWeight.bold,
-                              color: Theme.of(context).colorScheme.primary),
+                              color: Colors.black),
                         ),
                       ),
                       const SizedBox(height: 30.0),
@@ -127,19 +127,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPressed: () {},
                             child: Text('ĐĂNG NHẬP',
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 18)),
+                                    color: const Color.fromARGB(255, 0, 0, 0), fontSize: 18)),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
-                                    Theme.of(context).colorScheme.secondary),
+                                    Theme.of(context).colorScheme.primary),
                           )
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Bạn đã chưa có tài khoản?',style: TextStyles.normalText),
+                          Text('Bạn đã chưa có tài khoản?',
+                              style: TextStyles.normalText),
                           TextButton(
-                            
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -148,7 +148,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                           const SignInScreen()),
                                 );
                               },
-                              child: Text('Đăng ký',style: TextStyles.normalText.copyWith(color: Theme.of(context).colorScheme.primary )))
+                              child: Text('Đăng ký',
+                                  style: TextStyles.normalText.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary,
+                                      fontWeight: FontWeight.bold),
+                                          
+                                      ))
                         ],
                       ),
                     ],

@@ -1,5 +1,7 @@
-import 'package:beauty_app/widgets/textfield_input.dart';
+import 'package:beauty_app/widgets/catagogy.dart';
+import 'package:beauty_app/widgets/service.dart';
 import 'package:flutter/material.dart';
+import 'package:beauty_app/data/dummy_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -46,8 +48,15 @@ class _homeSCreenState extends State<HomeScreen> {
         titleSpacing: 20,
         title: Row(
           children: [
-            Text('LogoApp'),
-            SizedBox(width: 20,),
+            Image.asset(
+              'lib/assets/images/common/logo.png',
+              fit: BoxFit.contain,
+              width: 110,
+              height: 110,
+            ),
+            SizedBox(
+              width: 10,
+            ),
             Expanded(
               flex: 2,
               child: TextField(
@@ -55,12 +64,13 @@ class _homeSCreenState extends State<HomeScreen> {
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 0.5, horizontal: 20),
                     hintText: 'Bạn đang tìm gì ?',
-                    hintStyle:
-                        TextStyle(color: Theme.of(context).colorScheme.primary),
+                    hintStyle: TextStyle(
+                        color: Theme.of(context).colorScheme.onTertiary,
+                        fontWeight: FontWeight.w600),
                     suffixIcon: IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.search),
-                      color: Theme.of(context).colorScheme.primary,
+                      color: Theme.of(context).colorScheme.onTertiary,
                     ),
                     filled: true,
                     fillColor: Theme.of(context).colorScheme.tertiary,
@@ -81,58 +91,86 @@ class _homeSCreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
-              flex: 2,
+              flex: 3,
               child: GridView(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     childAspectRatio: 4 / 3,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10),
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5),
                 children: const [
-                  Text('1'),
-                  Text('2'),
-                  Text('3'),
-                  Text('4'),
-                  Text('5'),
-                  Text('6'),
+                  Catagogy(
+                      Name: "Tóc",
+                      image: 'lib/assets/images/common/category/hair.jpg'),
+                  Catagogy(
+                      Name: "Móng",
+                      image: 'lib/assets/images/common/category/nail.jpg'),
+                  Catagogy(
+                      Name: "Chân Mày",
+                      image: 'lib/assets/images/common/category/eyebrown.jpg'),
+                  Catagogy(
+                      Name: "Spa",
+                      image: 'lib/assets/images/common/category/spa.jpg'),
+                  Catagogy(
+                      Name: "Da",
+                      image: 'lib/assets/images/common/category/skin.jpg'),
+                  Catagogy(
+                      Name: "Môi",
+                      image: 'lib/assets/images/common/category/lips.jpg'),
                 ],
               ),
             ),
-            Expanded(
+            const Expanded(
               flex: 1,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Hot service'),
-                    InkWell(
-                      child: Image.asset(
-                        'lib/assets/images/icon/filter.png',
-                        height: 30,
-                        width: 30,
-                      ),
+                    Row(
+                      children: [
+                        Text(
+                          'Hot service',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          IconData(0xf86b, fontFamily: 'MaterialIcons'),
+                          color: Color.fromARGB(255, 228, 82, 25),
+                        )
+                      ],
                     ),
                   ],
                 ),
               ),
             ),
-            const SizedBox(
-              height: 5,
-            ),
             Expanded(
-              flex: 5,
-              child: ListView.builder(
-                itemCount: listText.length,
-                itemBuilder: (ctx, index) => ListTile(
-                  title: Text(listText[index]),
-                ),
+              flex: 6,
+              child: Container(
+                color: Theme.of(context).colorScheme.secondary,
+                child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 5,
+                        crossAxisSpacing: 5,
+                        childAspectRatio: 3 / 4),
+                    itemCount: DummyDetailservices.length,
+                    itemBuilder: (cxt, index) {
+                      return ServiceGridItem(
+                          serviceItem: DummyDetailservices[index]);
+                    }),
               ),
             ),
             BottomNavigationBar(
-              selectedItemColor: Theme.of(context).colorScheme.primary,
-              unselectedItemColor: Theme.of(context).colorScheme.secondary,
+              selectedItemColor: Theme.of(context).colorScheme.onPrimary,
+              unselectedItemColor: Theme.of(context).colorScheme.primary,
               currentIndex: _selectedIndex,
               onTap: _onItemTapped,
               items: const <BottomNavigationBarItem>[
